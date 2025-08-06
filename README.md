@@ -17,4 +17,16 @@
 
 ```bash
 pip install -r requirements.txt
-python app.py
+python safe_prompt_server.py
+
+Ajouter l’extension Chrome
+Ouvre chrome://extensions dans ton navigateur.
+
+Active le mode développeur (coin supérieur droit).
+
+Clique sur "Charger l’extension non empaquetée".
+
+Sélectionne le dossier chrome-extension/ du projet.
+
+👤 Auteur
+Ayman Ouhmoudou – LinkedIn · GitHub
