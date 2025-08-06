@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SafePrompt</title>
+    <script>
+    async function sendPrompt() {
+        const prompt = document.getElementById("prompt").value;
+        const res = await fetch("/analyze", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt })
+        });
+        const data = await res.json();
+
+        if (data.sensitive) {
+            if (confirm("⚠️ Des données sensibles ont été détectées : " + data.entities.join(", ") + ". Voulez-vous anonymiser ?")) {
+                sendAnonymized(prompt);
+            } else {
+                document.getElementById("result").textContent = "❌ Prompt annulé.";
+            }
+        } else {
+            sendAnonymized(prompt);
+        }
+    }
+
+    async function sendAnonymized(prompt) {
+        const res = await fetch("/process", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt })
+        });
+        const data = await res.json();
+        document.getElementById("result").textContent =
+            "✅ Prompt anonymisé :\n" + data.anonymized + "\n\n💬 Réponse LLM :\n" + data.response;
+    }
+    </script>
+</head>
+<body>
+    <h2>SafePrompt</h2>
+    <textarea id="prompt" rows="6" cols="80">Mon email est sara@example.com et mon CIN est AB123456</textarea><br>
+    <button onclick="sendPrompt()">Envoyer</button>
+    <pre id="result"></pre>
+</body>
+</html>

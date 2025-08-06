@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "SafePrompt",
+  "version": "1.0",
+  "description": "Protège les prompts envoyés aux IA publiques.",
+ 
+  "host_permissions": [
+  "http://127.0.0.1:5000/*"
+],
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content-chatgpt.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["scripting", "activeTab"]
+}
