@@ -27,6 +27,6 @@ Active le mode développeur (coin supérieur droit).
 Clique sur "Charger l’extension non empaquetée".
 
 Sélectionne le dossier chrome-extension/ du projet.
-
-👤 Auteur
-Ayman Ouhmoudou – LinkedIn · GitHub
+'''
+##👤 Auteur
+Ayman Ouhmoudou – LinkedIn · GitHub:Lelouchaym
